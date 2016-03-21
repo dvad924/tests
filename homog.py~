@@ -1,0 +1,42 @@
+import numpy as np
+import cv2
+
+imgleft = cv2.imread('left.jpg')
+imgright = cv2.imread('right.jpg')
+
+
+
+pts_right = np.array([[92,1244],[259,1230],[257,1500],[91,1507],
+                      [583,960],[896,917],[892,969],[]]);
+
+
+s3bluepts_real = np.array([[20.438,2.27],[18.482,2.27],[18.30,2.27],[16.36,2.27],[19.64,2.37]
+                           ,[18.30,2.37],[17.36,2.37],[17.17,2.37],[18.55,2.37],[18.23,2.37]])
+
+s4pts_real = np.array([[10.945,1.91],[10.945,4.46],[7.39,4.46],[7.39,1.91],[12.34,1.14],[12.34,0.69],
+                       [7.64,1.14],[10.04,1.14]]);
+
+pts_real = [[3.72],[4.04],[4.72],[5.04],[5.23],[5.52],[6.26],[6.54],[6.76],[7.05],[12.35],[12.63],[12.86]]
+def append81(x):
+    return [x[0],0.81]
+def add24(x):
+    t = x[1] + 2.4
+    return [x[0],t]
+s3blackpts_bottom = map(append81,pts_real)
+s3blackpts_top = map(add24 ,s3blackpts_bottom)
+
+s3blackpts = []
+s3blackpts += s3blackpts_bottom
+s3blackpts += s3blackpts_top
+s3blackpts_real = np.array(s3blackpts)
+
+s6pts_bottom = [[14.45,0.81],[14.73,0.81],[15.47,0.81],[15.75,0.81],[15.97,0.81],[16.25,0.81]]
+s6pts_top = map(add24,s6pts_bottom)
+s6pts = []
+s6pts += s6pts_bottom
+s6pts += s6pts_top
+s6pts_real = np.array(s6pts)
+
+print s3blackpts_real
+print s6pts_real
+
